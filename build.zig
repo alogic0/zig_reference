@@ -1,14 +1,8 @@
 const std = @import("std");
 
-const zig_version: std.SemanticVersion = .{ .major = 0, .minor = 14, .patch = 0 };
-const stack_size = 46 * 1024 * 1024;
-
 pub fn build(b: *std.Build) !void {
     const langref_file = generateLangRef(b);
-    const install_langref = b.addInstallFileWithDir(langref_file, .prefix, "doc/langref.html");
-
-    const langref_step = b.step("langref", "Build and install the language reference");
-    langref_step.dependOn(&install_langref.step);
+    _ = b.addInstallFileWithDir(langref_file, .prefix, "doc/langref.html");
 }
 
 fn generateLangRef(b: *std.Build) std.Build.LazyPath {
