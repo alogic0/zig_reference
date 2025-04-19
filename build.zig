@@ -2,7 +2,8 @@ const std = @import("std");
 
 pub fn build(b: *std.Build) !void {
     const langref_file = generateLangRef(b);
-    _ = b.addInstallFileWithDir(langref_file, .prefix, "doc/langref.html");
+    const install_langref = b.addInstallFileWithDir(langref_file, .prefix, "doc/langref.html");
+    b.getInstallStep().dependOn(&install_langref.step);
 }
 
 fn generateLangRef(b: *std.Build) std.Build.LazyPath {
