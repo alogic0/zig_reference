@@ -14,7 +14,7 @@ on:
         # Default value if no value is explicitly provided
         default: 'zig_out'
         # Input has to be provided for the workflow to run
-        required: true
+        required: false
         # The data type of the input
         type: string
 
@@ -27,5 +27,5 @@ jobs:
       - uses: mlugg/setup-zig@v2
         with:
           version: 0.14.0
-      - run: zig build install --prefix ${install_prefix}
+      - run: zig build install
 
