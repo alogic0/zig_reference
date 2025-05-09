@@ -28,14 +28,12 @@ jobs:
         with:
           version: 0.14.0
       - run: |
-             echo "install_prefix: ${{ inputs.install_prefix }}"
              zig build install
-             pwd
-             ls
+             echo "install_prefix: ${{ inputs.install_prefix }}"
+	     cp -v zig-out/doc/langref.html zig-out/index.html
 
-      - name: Upload zig_out as artifact (optional)
-        uses: actions/upload-artifact@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: zig-out
-          path: zig-out/
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: zig-out
