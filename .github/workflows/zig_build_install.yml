@@ -30,10 +30,11 @@ jobs:
       - run: |
              zig build install
              echo "install_prefix: ${{ inputs.install_prefix }}"
-	     cp -v zig-out/doc/langref.html zig-out/index.html
+	     mkdir docs
+	     cp -v zig-out/doc/langref.html docs/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: zig-out
+          publish_dir: docs
