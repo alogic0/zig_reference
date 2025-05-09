@@ -8,11 +8,11 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      install_prefix:
+      name: install_prefix
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Build reference file'
         # Default value if no value is explicitly provided
-        default: 'zig_out'
+        default: 'zig-out'
         # Input has to be provided for the workflow to run
         required: false
         # The data type of the input
@@ -28,6 +28,7 @@ jobs:
         with:
           version: 0.14.0
       - run: |
+             echo "install_prefix: ${install_prefix}"
              zig build install
              pwd
              ls
