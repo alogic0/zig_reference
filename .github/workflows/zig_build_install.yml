@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Run build and install steps
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
+      install_prefix:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Build reference file'
         # Default value if no value is explicitly provided
@@ -27,5 +27,5 @@ jobs:
       - uses: mlugg/setup-zig@v2
         with:
           version: 0.14.0
-      - run: zig build install
+      - run: zig build install --prefix ${install_prefix}
 
