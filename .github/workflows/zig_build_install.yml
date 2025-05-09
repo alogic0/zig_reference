@@ -14,7 +14,7 @@ on:
         # Default value if no value is explicitly provided
         default: 'zig_out'
         # Input has to be provided for the workflow to run
-        required: false
+        required: true
         # The data type of the input
         type: string
 
